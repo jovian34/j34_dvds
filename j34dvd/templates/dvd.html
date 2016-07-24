@@ -1,0 +1,37 @@
+        <div class="dvd">
+        <a class="header" href="{{ dvd.imdb_page }}">
+                    <h2><span class="imdb">
+                        {{ dvd.title|truncate(50, killwords=True) }}
+                    </span></h2>
+                    <br>
+                <h3 class="title">
+                    Binder: {{ dvd.binder|truncate(50, killwords=True) }},
+                    Page: {{ dvd.page }}, and
+                    Sleeve: {{ dvd.sleeve }}.
+
+                </h3>
+
+            </a>
+
+            <div class="info">
+
+                <span class="tags">
+                    {% if dvd.tags %}
+                        {% for t in dvd._tags %}
+                            <a href="{{ url_for('dvds.tag', name=t) }}">{{ t }}</a>
+                        {% endfor %}
+                    {% else %}No tags.
+                    {% endif %}
+                </span>
+
+                <br clear="all">
+                Added by <a href="{{ url_for('dvds.user', username=dvd.user.username) }}">
+                    {{ dvd.user.username }}</a> {{ moment(dvd.date).fromNow() }}.
+                {% if current_user == dvd.user %}
+                    <span class="editlinks">
+                        <a href="{{ url_for('dvds.edit_dvd', dvd_id=dvd.id) }}">edit</a>
+                        <a href="{{ url_for('dvds.delete_dvd', dvd_id=dvd.id) }}">delete</a>
+                    </span>
+                {% endif %}
+            </div>
+        </div>

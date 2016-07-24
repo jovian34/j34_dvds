@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+jovian34 -- DVDs for user {{ user.username }}
+{% endblock %}
+
+{% block content %}
+    <article>
+        <header>
+            <h1>DVDs for {{ user.username }}</h1>
+
+            {% if user.dvds.count() > 0 %}
+                {% with dvds=user.dvds %}
+                    {% include "dvd_list.html" %}
+                {% endwith %}
+            {% else %}
+                This user has not added any DVDs yet.
+            {% endif %}
+        </header>
+    </article>
+
+
+
+{% endblock %}

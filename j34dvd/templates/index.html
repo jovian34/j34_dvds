@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+DVD Binder App
+{% endblock %}
+
+{% block content %}
+                <article>
+                    <header>
+                        <h1>Welcome</h1>
+                        <p>jovian34 DVD is a web application is a database of DVD movies that shows where they
+                            are stored in the house. This is especially useful if your DVD library is contained in
+                            disc binders.
+                        </p>
+                    </header>
+                    <section>
+                        <h2>Your DVDs in Alpabetical Order:</h2>
+                            {% if alpha_dvds.count() > 0 %}
+                                {% with dvds=alpha_dvds %}
+                                    {% include "dvd_list.html" %}
+                                {% endwith %}
+                            {% else %}
+                                <p>No DVDs yet</p>
+                            {% endif %}
+                    </section>
+                </article>
+
+{% endblock %}

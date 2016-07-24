@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+jovian34 -- DVDs tagged {{ tag }}
+{% endblock %}
+
+{% block content %}
+    <article>
+        <header>
+            <h1>DVDs tagged {{ tag }}</h1>
+
+            {% if discs.count() > 0 %}
+                {% with dvds=discs %}
+                    {% include "dvd_list.html" %}
+                {% endwith %}
+            {% else %}
+                There are no DVDs with this tag.
+            {% endif %}
+        </header>
+    </article>
+
+
+
+{% endblock %}
